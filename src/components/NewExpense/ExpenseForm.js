@@ -41,6 +41,8 @@ function ExpenseForm(props) {
           <div className="new-expense__control">
             <label>Title</label>
             <input
+              placeholder="Enter item title"
+              required={true}
               value={enteredTitle}
               onChange={titleChangehandler}
               type="text"
@@ -49,6 +51,8 @@ function ExpenseForm(props) {
           <div className="new-expense__control">
             <label>Amount</label>
             <input
+              placeholder="Enter amount"
+              required={true}
               value={enteredAmount}
               onChange={amountChangehandler}
               type="number"
@@ -59,19 +63,15 @@ function ExpenseForm(props) {
           <div className="new-expense__control">
             <label>Date</label>
             <input
+              required={true}
               value={enteredDate}
               onChange={dateChangehandler}
               type="date"
-              min="2019-01-01"
-              max="2022-12-31"
             />
           </div>
         </div>
         <div className="new-expense__actions">
           <button type="submit">Add Expense</button>
-          Title: {enteredTitle}
-          Amount: {enteredAmount}
-          Date: {enteredDate}
         </div>
       </form>
     </div>

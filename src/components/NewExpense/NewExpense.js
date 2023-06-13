@@ -1,22 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ExpenseForm from "./ExpenseForm";
 import "./NewExpense.css";
 
 const NewExpense = (props) => {
+  const [showAddButton, setShowAddButton] = useState(true)
+
   const expenseDataHandler = (inputData) => {
     const expenseData = {
       ...inputData,
       id: Math.random().toString(),
     };
-    console.log("Finally");
-    console.log(expenseData);
+
     props.onAddExpense(expenseData);
   };
 
-  return (
+  const toggle = () => {
+    setShowAddButton(false)
+  };
+
+  const toggleHandler = () => {
+    setShowAddButton(true)
+  }
+
+  let content = (
     <div className="new-expense">
-      <ExpenseForm onSaveExpenseData={expenseDataHandler} />
+      <button onClick={toggle} type="submit">
+        Add New Expense
+      </button>
+    </div>
+  );
+
+  if (showAddButton === false) {
+    content = (
+      <div className="new-expense">
+        <ExpenseForm onToggle = {toggleHandler} onSaveExpenseData={expenseDataHandler} />
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {content}
     </div>
   );
 };
